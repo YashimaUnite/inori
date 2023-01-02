@@ -1,4 +1,4 @@
 # Inori
-Super 31Equal KeyBoard.
+Super 31 Equal Temperament KeyBoard.
 
-Dear......
+Dear, Friends.
