@@ -1,18 +1,22 @@
+import { WaveTypes } from './waveTypes';
+import { SamplingRate } from './samplingRate';
+
 // Initialize WebAudioAPI.
 const audioContext = new AudioContext();
 // Set to Stereo Output by L and R.
-const channels = 2
+const channels = 2;
 
-// 44.1kHz → Records 44,100 Sound Data per second.
-// 48kHz → Records 48,000 Sound Data per second.
-audioContext.sampleRate = 48000;
+// 44.1kHz → CD_STANDARD.
+// 48kHz → VIDEO_STANDARD(and also HiFiAudio).
+audioContext.sampleRate = SamplingRate.VIDEO_STANDARD;
 
 // First, create the instance of Oscillator and Gain Node.
 // Then, OscillatorNode (Input) → GainNode (Volume) → AudioDestinationNode (Output).
+// In addition, It can also choose from four WaveTypes.
 export const generateSound = () => {
     const oscillator = audioContext.createOscillator();
-    oscillator.type = "sine";
     const gain = audioContext.createGain();
+    oscillator.type = WaveTypes.SINE;
     oscillator.connect(gain);
     gain.connect(audioContext.destination);
     oscillator.start();
